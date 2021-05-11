@@ -1,0 +1,227 @@
+@prefix : <https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl> .
+
+<https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/ontology/po/director
+<http://purl.org/ontology/po/director> rdf:type owl:ObjectProperty ;
+                                       rdfs:subPropertyOf owl:topObjectProperty ;
+                                       owl:inverseOf :directs .
+
+
+###  https://dbpedia.org/ontology/thumbnail
+<https://dbpedia.org/ontology/thumbnail> rdf:type owl:ObjectProperty ;
+                                         rdfs:domain <https://dbpedia.org/ontology/Image> ;
+                                         rdfs:range <http://live.dbpedia.org/ontology/Film> .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#castFor
+:castFor rdf:type owl:ObjectProperty ;
+         owl:inverseOf :hasCast ;
+         rdf:type owl:TransitiveProperty ;
+         rdfs:domain <http://purl.org/co/Bag> ;
+         rdfs:range <http://live.dbpedia.org/ontology/Film> ;
+         owl:propertyChainAxiom ( :cast_attr1
+                                ) ,
+                                ( :cast_attr2
+                                ) .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#cast_attr1
+:cast_attr1 rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdf:type owl:TransitiveProperty ;
+            rdfs:domain <http://live.dbpedia.org/ontology/Actor> ;
+            rdfs:range <http://purl.org/co/Bag> .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#cast_attr2
+:cast_attr2 rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdf:type owl:TransitiveProperty ;
+            rdfs:domain <http://live.dbpedia.org/ontology/Actor> ;
+            rdfs:range <http://purl.org/co/Bag> .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#directs
+:directs rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         rdfs:domain <http://live.dbpedia.org/ontology/MovieDirector> ;
+         rdfs:range <http://live.dbpedia.org/ontology/Film> .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#hasCast
+:hasCast rdf:type owl:ObjectProperty ;
+         rdfs:domain <http://live.dbpedia.org/ontology/Film> ;
+         rdfs:range <http://purl.org/co/Bag> .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#hasProducers
+:hasProducers rdf:type owl:ObjectProperty ;
+              owl:inverseOf :producersFor ;
+              rdfs:domain <http://live.dbpedia.org/ontology/Film> ;
+              rdfs:range <http://purl.org/co/Bag> .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#producersFor
+:producersFor rdf:type owl:ObjectProperty ,
+                       owl:TransitiveProperty ;
+              rdfs:domain <http://purl.org/co/Bag> ;
+              rdfs:range <http://live.dbpedia.org/ontology/Film> ;
+              owl:propertyChainAxiom ( :producers_attr1
+                                     ) .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#producers_attr1
+:producers_attr1 rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdf:type owl:TransitiveProperty ;
+                 rdfs:domain <http://xmlns.com/foaf/0.1/Person> ;
+                 rdfs:range <http://purl.org/co/Bag> .
+
+
+###  https://schema.org/trailer
+<https://schema.org/trailer> rdf:type owl:ObjectProperty ;
+                             rdfs:domain <http://dati.beniculturali.it/cis/VideoObject> ;
+                             rdfs:range <http://live.dbpedia.org/ontology/Film> .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/description
+<http://purl.org/dc/elements/1.1/description> rdf:type owl:DatatypeProperty ;
+                                              rdfs:domain <http://live.dbpedia.org/ontology/Film> .
+
+
+###  http://purl.org/dc/terms/SizeOrDuration
+<http://purl.org/dc/terms/SizeOrDuration> rdf:type owl:DatatypeProperty ;
+                                          rdfs:subPropertyOf owl:topDataProperty ;
+                                          rdfs:domain <http://live.dbpedia.org/ontology/Film> .
+
+
+###  http://purl.org/ontology/po/Genre
+<http://purl.org/ontology/po/Genre> rdf:type owl:DatatypeProperty ;
+                                    rdfs:domain <http://live.dbpedia.org/ontology/Film> .
+
+
+###  http://xmlns.com/foaf/0.1/name
+<http://xmlns.com/foaf/0.1/name> rdf:type owl:DatatypeProperty .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#imageLink
+:imageLink rdf:type owl:DatatypeProperty ;
+           rdfs:domain <https://dbpedia.org/ontology/Image> .
+
+
+###  https://www.bbc.co.uk/ontologies/creativework#terms_title
+<https://www.bbc.co.uk/ontologies/creativework#terms_title> rdf:type owl:DatatypeProperty ;
+                                                            rdfs:subPropertyOf owl:topDataProperty ;
+                                                            rdfs:domain <http://live.dbpedia.org/ontology/Film> .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://dati.beniculturali.it/cis/VideoObject
+<http://dati.beniculturali.it/cis/VideoObject> rdf:type owl:Class .
+
+
+###  http://live.dbpedia.org/ontology/Actor
+<http://live.dbpedia.org/ontology/Actor> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> .
+
+
+###  http://live.dbpedia.org/ontology/Film
+<http://live.dbpedia.org/ontology/Film> rdf:type owl:Class .
+
+
+###  http://live.dbpedia.org/ontology/MovieDirector
+<http://live.dbpedia.org/ontology/MovieDirector> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> .
+
+
+###  http://live.dbpedia.org/ontology/Review
+<http://live.dbpedia.org/ontology/Review> rdf:type owl:Class .
+
+
+###  http://purl.org/co/Bag
+<http://purl.org/co/Bag> rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+<http://xmlns.com/foaf/0.1/Person> rdf:type owl:Class .
+
+
+###  https://dbpedia.org/ontology/Image
+<https://dbpedia.org/ontology/Image> rdf:type owl:Class .
+
+
+###  https://dbpedia.org/ontology/MovieGenre
+<https://dbpedia.org/ontology/MovieGenre> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#Cast
+:Cast rdf:type owl:NamedIndividual ,
+               <http://purl.org/co/Bag> ;
+      :castFor :Wonder_Woman .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#Chris_Pine
+:Chris_Pine rdf:type owl:NamedIndividual ,
+                     <http://live.dbpedia.org/ontology/Actor> ;
+            :cast_attr2 :Cast ;
+            <http://xmlns.com/foaf/0.1/name> "Chris Pine" .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#Gal_Gadot
+:Gal_Gadot rdf:type owl:NamedIndividual ,
+                    <http://live.dbpedia.org/ontology/Actor> ;
+           :cast_attr1 :Cast ;
+           <http://xmlns.com/foaf/0.1/name> "Gal Gadot" .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#Patty_Jenkins
+:Patty_Jenkins rdf:type owl:NamedIndividual ,
+                        <http://xmlns.com/foaf/0.1/Person> ;
+               :producers_attr1 :Producers ;
+               <http://xmlns.com/foaf/0.1/name> "Patty Jenkins" .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#Producers
+:Producers rdf:type owl:NamedIndividual ,
+                    <http://purl.org/co/Bag> .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#WW_Poster
+:WW_Poster rdf:type owl:NamedIndividual ,
+                    <https://dbpedia.org/ontology/Image> ;
+           <https://dbpedia.org/ontology/thumbnail> :Wonder_Woman ;
+           :imageLink "https://m.media-amazon.com/images/M/MV5BYTlhNzJjYzYtNGU3My00ZDI5LTgzZDUtYzllYjU1ZmU0YTgwXkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_.jpg" .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#Wonder_Woman
+:Wonder_Woman rdf:type owl:NamedIndividual ,
+                       <http://live.dbpedia.org/ontology/Film> ;
+              :hasCast :Cast ;
+              :hasProducers :Producers ;
+              <http://purl.org/dc/terms/SizeOrDuration> "151M" ;
+              <https://www.bbc.co.uk/ontologies/creativework#terms_title> "Wonder Woman 1984"^^xsd:string .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

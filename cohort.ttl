@@ -96,64 +96,76 @@
 
 ###  http://purl.org/dc/elements/1.1/description
 <http://purl.org/dc/elements/1.1/description> rdf:type owl:DatatypeProperty ;
-                                              rdfs:domain <http://live.dbpedia.org/ontology/Film> .
+                                              rdfs:domain <http://live.dbpedia.org/ontology/Film> ;
+                                              rdfs:range xsd:string .
 
 
 ###  http://purl.org/dc/terms/SizeOrDuration
 <http://purl.org/dc/terms/SizeOrDuration> rdf:type owl:DatatypeProperty ;
                                           rdfs:subPropertyOf owl:topDataProperty ;
-                                          rdfs:domain <http://live.dbpedia.org/ontology/Film> .
-
-
-###  http://purl.org/ontology/po/Genre
-<http://purl.org/ontology/po/Genre> rdf:type owl:DatatypeProperty ;
-                                    rdfs:domain <http://live.dbpedia.org/ontology/Film> .
+                                          rdfs:domain <http://live.dbpedia.org/ontology/Film> ;
+                                          rdfs:range xsd:string .
 
 
 ###  http://xmlns.com/foaf/0.1/name
-<http://xmlns.com/foaf/0.1/name> rdf:type owl:DatatypeProperty .
+<http://xmlns.com/foaf/0.1/name> rdf:type owl:DatatypeProperty ;
+                                 rdfs:range xsd:string .
+
+
+###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#genreName
+:genreName rdf:type owl:DatatypeProperty ;
+           rdfs:domain <https://dbpedia.org/ontology/MovieGenre> ;
+           rdfs:range xsd:string .
 
 
 ###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#imageLink
 :imageLink rdf:type owl:DatatypeProperty ;
-           rdfs:domain <https://dbpedia.org/ontology/Image> .
+           rdfs:domain <https://dbpedia.org/ontology/Image> ;
+           rdfs:range xsd:string .
 
 
 ###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#rating
 :rating rdf:type owl:DatatypeProperty ;
-        rdfs:domain <http://live.dbpedia.org/ontology/Film> .
+        rdfs:domain <http://live.dbpedia.org/ontology/Film> ;
+        rdfs:range xsd:float .
 
 
 ###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#ratingCount
 :ratingCount rdf:type owl:DatatypeProperty ;
-             rdfs:domain <http://live.dbpedia.org/ontology/Film> .
+             rdfs:domain <http://live.dbpedia.org/ontology/Film> ;
+             rdfs:range xsd:integer .
 
 
 ###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#videoLink
 :videoLink rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf owl:topDataProperty ;
-           rdfs:domain <http://dati.beniculturali.it/cis/VideoObject> .
+           rdfs:domain <http://dati.beniculturali.it/cis/VideoObject> ;
+           rdfs:range xsd:string .
 
 
 ###  https://schema.org/contentRating
 <https://schema.org/contentRating> rdf:type owl:DatatypeProperty ;
-                                   rdfs:domain <http://live.dbpedia.org/ontology/Film> .
+                                   rdfs:domain <http://live.dbpedia.org/ontology/Film> ;
+                                   rdfs:range xsd:string .
 
 
 ###  https://schema.org/doorTime
 <https://schema.org/doorTime> rdf:type owl:DatatypeProperty ;
-                              rdfs:domain <https://schema.org/TheaterEvent> .
+                              rdfs:domain <https://schema.org/TheaterEvent> ;
+                              rdfs:range xsd:dateTime .
 
 
 ###  https://schema.org/location
 <https://schema.org/location> rdf:type owl:DatatypeProperty ;
-                              rdfs:domain <https://schema.org/MovieTheater> .
+                              rdfs:domain <https://schema.org/MovieTheater> ;
+                              rdfs:range xsd:string .
 
 
 ###  https://www.bbc.co.uk/ontologies/creativework#terms_title
 <https://www.bbc.co.uk/ontologies/creativework#terms_title> rdf:type owl:DatatypeProperty ;
                                                             rdfs:subPropertyOf owl:topDataProperty ;
-                                                            rdfs:domain <http://live.dbpedia.org/ontology/Film> .
+                                                            rdfs:domain <http://live.dbpedia.org/ontology/Film> ;
+                                                            rdfs:range xsd:string .
 
 
 #################################################################
@@ -209,7 +221,8 @@
 
 ###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#Adventure
 :Adventure rdf:type owl:NamedIndividual ,
-                    <https://dbpedia.org/ontology/MovieGenre> .
+                    <https://dbpedia.org/ontology/MovieGenre> ;
+           :genreName "adventure"^^xsd:string .
 
 
 ###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#Chris_Pine
@@ -241,7 +254,7 @@
 :SundayAfternoon rdf:type owl:NamedIndividual ,
                           <https://schema.org/TheaterEvent> ;
                  <https://schema.org/workPerformed> :Wonder_Woman ;
-                 <https://schema.org/doorTime> "2021-06-10 17:00:00" .
+                 <https://schema.org/doorTime> "2021-06-10T17:00:00"^^xsd:dateTime .
 
 
 ###  https://raw.githubusercontent.com/JulietaRey/websemantica-owl/master/cohort.ttl#WW_Poster
@@ -265,9 +278,9 @@
               :producedBy :Patty_Jenkins ;
               :starring :Chris_Pine ,
                         :Gal_Gadot ;
-              <http://purl.org/dc/elements/1.1/description> "Wonder Woman 1984 is a movie starring Gal Gadot, Chris Pine, and Kristen Wiig. Diana must contend with a work colleague and businessman, whose desire for extreme wealth sends the world down a path of destruction, after an ancient..." ;
+              <http://purl.org/dc/elements/1.1/description> "Wonder Woman 1984 is a movie  Gal Gadot, Chris Pine, and Kristen Wiig. Diana must contend with a work colleague and businessman, whose desire for extreme wealth sends the world down a path of destruction, after an ancient..." ;
               <http://purl.org/dc/terms/SizeOrDuration> "151M" ;
-              :rating 5.401284709770965 ;
+              :rating "5.4012"^^xsd:float ;
               :ratingCount 192417 ;
               <https://schema.org/contentRating> "PG-13" ;
               <https://www.bbc.co.uk/ontologies/creativework#terms_title> "Wonder Woman 1984"^^xsd:string .
